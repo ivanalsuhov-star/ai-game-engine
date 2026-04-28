@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import type { Difficulty, Task, Topic } from "@/lib/types";
 import { DIFFICULTY_LABELS, TOPIC_LABELS } from "@/lib/tasks";
 import { DifficultyBadge } from "./DifficultyBadge";
+import { MathText } from "./Math";
 
 interface Props {
   tasks: Task[];
@@ -109,9 +110,10 @@ export function TaskFilters({ tasks }: Props) {
               <DifficultyBadge difficulty={t.difficulty} />
               <span className="text-sm text-slate-400">— {t.subtopic}</span>
             </div>
-            <p className="mt-2 line-clamp-3 text-sm text-slate-200">
-              {t.statement.replace(/\\\\?\n/g, " ")}
-            </p>
+            <MathText
+              className="mt-2 line-clamp-3 text-sm text-slate-200"
+              text={t.statement.replace(/\\\\?\n/g, " ")}
+            />
             <div className="mt-2 text-xs text-slate-500">
               Источник: {t.source}
             </div>
