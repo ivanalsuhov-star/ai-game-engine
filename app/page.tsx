@@ -2,6 +2,8 @@ import Link from "next/link";
 import { TopicCard } from "@/components/TopicCard";
 import { StatsBar } from "@/components/StatsBar";
 import { allTasks, getTasksByTopic } from "@/lib/tasks";
+import { videos } from "@/lib/videos";
+import { handbook } from "@/lib/handbook";
 
 export default function HomePage() {
   const probabilityCount = getTasksByTopic("probability").length;
@@ -17,20 +19,23 @@ export default function HomePage() {
             Подготовка к экзамену в формате карточек
           </h1>
           <p className="mt-3 text-base text-slate-300 sm:text-lg">
-            Справочник, тренажёр и агрегатор реальных задач из открытого банка
-            ФИПИ. Сосредоточены на самом &laquo;дорогом&raquo; материале —
-            экономических задачах (№16) и теории вероятностей со статистикой
-            (№№2-5, 10).
+            Справочник, тренажёр, агрегатор реальных задач из открытого банка
+            ФИПИ и видеоразборы самых сложных тем. Сосредоточены на самом
+            &laquo;дорогом&raquo; материале: экономических задачах (№16),
+            теории вероятностей (№№4-5) и базовой статистике.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/trainer" className="btn-primary">
               Начать тренировку
             </Link>
             <Link href="/handbook" className="btn">
-              Открыть справочник
+              Справочник ({handbook.length})
             </Link>
             <Link href="/tasks" className="btn">
-              Все задачи ({allTasks.length})
+              Задачи ({allTasks.length})
+            </Link>
+            <Link href="/videos" className="btn">
+              Видео ({videos.length})
             </Link>
           </div>
         </div>
@@ -69,7 +74,7 @@ export default function HomePage() {
 
       <section className="surface p-6 sm:p-8">
         <h2 className="text-lg font-semibold text-white">Как устроена платформа</h2>
-        <ul className="mt-3 grid gap-3 text-sm text-slate-300 sm:grid-cols-3">
+        <ul className="mt-3 grid gap-3 text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-4">
           <li>
             <strong className="text-white">Справочник.</strong> Краткая теория с
             формулами KaTeX и связями к задачам.
@@ -81,6 +86,11 @@ export default function HomePage() {
           <li>
             <strong className="text-white">Агрегатор.</strong> Все задачи с
             фильтрами по теме, номеру и сложности — для целевой подготовки.
+          </li>
+          <li>
+            <strong className="text-white">Видеоразборы.</strong> Озвученные
+            пошаговые ролики по самым сложным темам — для комплексного
+            запоминания.
           </li>
         </ul>
       </section>

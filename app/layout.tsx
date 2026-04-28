@@ -50,6 +50,9 @@ function Header() {
         <Link className="chip" href="/tasks">
           Задачи
         </Link>
+        <Link className="chip" href="/videos">
+          Видеоразборы
+        </Link>
       </nav>
     </header>
   );

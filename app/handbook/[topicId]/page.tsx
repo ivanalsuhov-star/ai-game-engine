@@ -57,7 +57,9 @@ export default function HandbookDetailPage({
                 className="surface block p-4 transition hover:border-accent/60"
               >
                 <div className="flex items-center gap-2">
-                  <span className="badge">№{t.examNumber}</span>
+                  <span className="badge">
+                    ЕГЭ {t.examLevel} №{t.examNumber}
+                  </span>
                   <span className="text-sm font-medium text-slate-100">
                     {t.subtopic}
                   </span>

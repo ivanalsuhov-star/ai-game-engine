@@ -30,7 +30,9 @@ export default function TaskDetailPage({
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <span className="badge">{TOPIC_LABELS[task.topic]}</span>
-          <span className="badge">№{task.examNumber}</span>
+          <span className="badge">
+            ЕГЭ {task.examLevel} №{task.examNumber}
+          </span>
           <DifficultyBadge difficulty={task.difficulty} />
           <span className="text-sm text-slate-400">{task.subtopic}</span>
         </div>

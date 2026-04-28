@@ -2,8 +2,15 @@ export type Topic = "probability" | "statistics" | "economics";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
-/** Тип задания ЕГЭ профильная математика (актуальная нумерация 2024-2025). */
-export type ExamTaskNumber = 2 | 3 | 4 | 5 | 10 | 16;
+/** Уровень ЕГЭ: профильный или базовый. */
+export type ExamLevel = "профиль" | "база";
+
+/**
+ * Номер задания ЕГЭ. Для профильного уровня 2025 актуальные номера:
+ * 1-12 — часть 1 (краткий ответ), 13-19 — часть 2 (с развёрнутым решением).
+ * Для базового уровня — №1-21.
+ */
+export type ExamTaskNumber = number;
 
 export interface AnswerNumeric {
   kind: "numeric";
@@ -42,6 +49,8 @@ export interface Task {
   id: string;
   topic: Topic;
   examNumber: ExamTaskNumber;
+  /** Уровень экзамена: "профиль" по умолчанию. */
+  examLevel: ExamLevel;
   /** Подтема (например, "Аннуитетный кредит", "Формула Бернулли") */
   subtopic: string;
   difficulty: Difficulty;
@@ -64,6 +73,34 @@ export interface HandbookSection {
   title: string;
   /** Markdown-подобный текст с поддержкой формул. */
   body: string;
+}
+
+export interface VideoLessonChapter {
+  /** Время начала главы в секундах. */
+  startSec: number;
+  title: string;
+}
+
+export interface VideoLesson {
+  id: string;
+  topic: Topic;
+  title: string;
+  /** Краткое описание для карточки и страницы. */
+  summary: string;
+  /** Длительность в секундах. */
+  durationSec: number;
+  /** Уровень сложности. */
+  difficulty: Difficulty;
+  /** Путь к mp4 (относительно /public). */
+  videoSrc: string;
+  /** Опционально: путь к постеру. */
+  poster?: string;
+  /** Главы для удобной навигации внутри плеера. */
+  chapters: VideoLessonChapter[];
+  /** Связанные задачи. */
+  relatedTaskIds: string[];
+  /** Связанные разделы справочника. */
+  relatedHandbookTopics: string[];
 }
 
 export interface HandbookTopic {

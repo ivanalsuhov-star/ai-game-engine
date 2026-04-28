@@ -145,6 +145,41 @@ describe("Корректность ответов задач", () => {
     }
     expectNumeric(t!.answer, total, 1e-6);
   });
+
+  it("игральная кость: P(>4) = 2/6", () => {
+    const t = getTaskById("prob-classical-dice-six");
+    expectNumeric(t!.answer, 2 / 6, 1e-6);
+  });
+
+  it("Бернулли: n=5, k=4, p=0.9 → 0.32805", () => {
+    const t = getTaskById("prob-bernoulli-test-questions");
+    expectNumeric(t!.answer, 5 * Math.pow(0.9, 4) * 0.1, 1e-6);
+  });
+
+  it("полная вероятность: монета + 2 коробки шаров = 0.45", () => {
+    const t = getTaskById("prob-total-disease");
+    expectNumeric(t!.answer, 0.5 * 0.3 + 0.5 * 0.6, 1e-6);
+  });
+
+  it("средняя температура [5,7,4,6,3] = 5", () => {
+    const t = getTaskById("stat-graph-temperature");
+    expectNumeric(t!.answer, 25 / 5);
+  });
+
+  it("мода [3,5,5,7,8,5,9,3] = 5", () => {
+    const t = getTaskById("stat-mode");
+    expectNumeric(t!.answer, 5);
+  });
+
+  it("вклад 100k, ежемесячная капитализация 1% × 2 мес = 102010", () => {
+    const t = getTaskById("econ-deposit-monthly-cap");
+    expectNumeric(t!.answer, 100000 * Math.pow(1.01, 2), 1);
+  });
+
+  it("простой кредит 600k под 20% на 1 год → переплата 120k", () => {
+    const t = getTaskById("econ-loan-simple");
+    expectNumeric(t!.answer, 600000 * 0.2, 1);
+  });
 });
 
 describe("Целостность данных", () => {

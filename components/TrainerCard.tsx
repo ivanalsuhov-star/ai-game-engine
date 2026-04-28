@@ -67,7 +67,9 @@ export function TrainerCard({ tasks, topicLabel }: Props) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="badge">{topicLabel}</span>
-          <span className="badge">№{task.examNumber}</span>
+          <span className="badge">
+            ЕГЭ {task.examLevel} №{task.examNumber}
+          </span>
           <DifficultyBadge difficulty={task.difficulty} />
         </div>
         <span className="text-sm text-slate-400">

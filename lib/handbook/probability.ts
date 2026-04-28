@@ -110,4 +110,30 @@ export const probabilityHandbook: HandbookTopic[] = [
     ],
     relatedTaskIds: ["prob-total-factory"],
   },
+  {
+    id: "hb-probability-conditional",
+    topic: "probability",
+    title: "Условная вероятность и независимость",
+    summary:
+      "Что такое условная вероятность $P(A|B)$, формула умножения и тест на независимость.",
+    readingMinutes: 5,
+    sections: [
+      {
+        id: "definition",
+        title: "Определение",
+        body: "Условная вероятность события $A$ при условии, что произошло $B$, равна\n\n$$P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)}, \\quad P(B) > 0.$$",
+      },
+      {
+        id: "multiplication",
+        title: "Формула умножения",
+        body: "Из определения сразу следует $P(A \\cap B) = P(B) \\cdot P(A \\mid B)$. Это самая удобная формула, когда события связаны последовательно (например, «сначала вытащили карту, потом ещё одну»).",
+      },
+      {
+        id: "independence",
+        title: "Независимость",
+        body: "События $A$ и $B$ независимы тогда и только тогда, когда $P(A \\mid B) = P(A)$ или, что эквивалентно, $P(A \\cap B) = P(A) \\cdot P(B)$. На практике независимость указывают в условии («независимые испытания», «бросают независимо»).",
+      },
+    ],
+    relatedTaskIds: ["prob-conditional-cards", "prob-total-disease"],
+  },
 ];

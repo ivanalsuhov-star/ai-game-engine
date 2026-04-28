@@ -8,7 +8,8 @@ export const statisticsTasks: Task[] = [
   {
     id: "stat-mean",
     topic: "statistics",
-    examNumber: 10,
+    examNumber: 9,
+    examLevel: "база",
     subtopic: "Среднее арифметическое",
     difficulty: "easy",
     source: "Открытый банк ФИПИ (тип задания)",
@@ -42,7 +43,8 @@ export const statisticsTasks: Task[] = [
   {
     id: "stat-median",
     topic: "statistics",
-    examNumber: 10,
+    examNumber: 9,
+    examLevel: "база",
     subtopic: "Медиана",
     difficulty: "easy",
     source: "Открытый банк ФИПИ (тип задания)",
@@ -76,7 +78,8 @@ export const statisticsTasks: Task[] = [
   {
     id: "stat-range",
     topic: "statistics",
-    examNumber: 10,
+    examNumber: 9,
+    examLevel: "база",
     subtopic: "Размах",
     difficulty: "easy",
     source: "Открытый банк ФИПИ (тип задания)",
@@ -110,7 +113,8 @@ export const statisticsTasks: Task[] = [
   {
     id: "stat-mean-median-mismatch",
     topic: "statistics",
-    examNumber: 10,
+    examNumber: 9,
+    examLevel: "база",
     subtopic: "Средние величины",
     difficulty: "medium",
     source: "Открытый банк ФИПИ (тип задания)",
@@ -144,7 +148,8 @@ export const statisticsTasks: Task[] = [
   {
     id: "stat-frequency",
     topic: "statistics",
-    examNumber: 10,
+    examNumber: 9,
+    examLevel: "база",
     subtopic: "Частота и доля",
     difficulty: "medium",
     source: "Открытый банк ФИПИ (тип задания)",
@@ -171,6 +176,50 @@ export const statisticsTasks: Task[] = [
     solution: [
       "Двоечников: $25-4-12-7 = 2$.",
       "Доля: $\\dfrac{2}{25} = 0{,}08$.",
+    ],
+    relatedHandbookTopics: ["hb-statistics-averages"],
+  },
+  {
+    id: "stat-graph-temperature",
+    topic: "statistics",
+    examNumber: 9,
+    examLevel: "база",
+    subtopic: "Чтение графиков",
+    difficulty: "easy",
+    source: "Открытый банк ФИПИ (тип задания)",
+    statement:
+      "В понедельник температура была 5 °C, во вторник 7 °C, в среду 4 °C, в четверг 6 °C, в пятницу 3 °C. Найдите среднюю температуру за эти 5 дней.",
+    answer: { kind: "numeric", value: 5, tolerance: 0.001 },
+    hints: [
+      { level: 1, title: "Сложить", body: "Найдите сумму всех 5 значений." },
+      { level: 2, title: "Поделить", body: "Сумму поделите на 5." },
+      { level: 3, title: "Разбор", body: "$5+7+4+6+3=25$. $25/5=5$." },
+    ],
+    solution: [
+      "Сумма температур: $5+7+4+6+3=25$.",
+      "Средняя: $25/5=5$ °C.",
+    ],
+    relatedHandbookTopics: ["hb-statistics-averages"],
+  },
+  {
+    id: "stat-mode",
+    topic: "statistics",
+    examNumber: 9,
+    examLevel: "база",
+    subtopic: "Мода и медиана",
+    difficulty: "easy",
+    source: "Открытый банк ФИПИ (тип задания)",
+    statement:
+      "Найдите моду ряда чисел: 3, 5, 5, 7, 8, 5, 9, 3.",
+    answer: { kind: "numeric", value: 5, tolerance: 0.001 },
+    hints: [
+      { level: 1, title: "Что такое мода", body: "Мода — число, встречающееся чаще всего." },
+      { level: 2, title: "Подсказка", body: "Подсчитайте, сколько раз встречается каждое число." },
+      { level: 3, title: "Разбор", body: "5 встречается 3 раза, остальные — реже. Мода = 5." },
+    ],
+    solution: [
+      "Подсчёт: 3 (×2), 5 (×3), 7 (×1), 8 (×1), 9 (×1).",
+      "Мода — самое частое значение: 5.",
     ],
     relatedHandbookTopics: ["hb-statistics-averages"],
   },

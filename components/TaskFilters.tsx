@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Difficulty, Task, Topic } from "@/lib/types";
+import type { Difficulty, ExamLevel, Task, Topic } from "@/lib/types";
 import { DIFFICULTY_LABELS, TOPIC_LABELS } from "@/lib/tasks";
 import { DifficultyBadge } from "./DifficultyBadge";
 import { MathText } from "./Math";
@@ -13,11 +13,13 @@ interface Props {
 
 const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
 const TOPICS: Topic[] = ["probability", "statistics", "economics"];
+const LEVELS: ExamLevel[] = ["профиль", "база"];
 
 export function TaskFilters({ tasks }: Props) {
   const [topic, setTopic] = useState<Topic | "all">("all");
   const [difficulty, setDifficulty] = useState<Difficulty | "all">("all");
   const [examNumber, setExamNumber] = useState<number | "all">("all");
+  const [level, setLevel] = useState<ExamLevel | "all">("all");
 
   const examNumbers = useMemo(
     () => Array.from(new Set(tasks.map((t) => t.examNumber))).sort((a, b) => a - b),
@@ -30,9 +32,10 @@ export function TaskFilters({ tasks }: Props) {
         if (topic !== "all" && t.topic !== topic) return false;
         if (difficulty !== "all" && t.difficulty !== difficulty) return false;
         if (examNumber !== "all" && t.examNumber !== examNumber) return false;
+        if (level !== "all" && t.examLevel !== level) return false;
         return true;
       }),
-    [tasks, topic, difficulty, examNumber],
+    [tasks, topic, difficulty, examNumber, level],
   );
 
   return (
@@ -73,6 +76,23 @@ export function TaskFilters({ tasks }: Props) {
               </ChipButton>
             ))}
           </FilterGroup>
+          <FilterGroup label="Уровень ЕГЭ">
+            <ChipButton
+              active={level === "all"}
+              onClick={() => setLevel("all")}
+            >
+              Все
+            </ChipButton>
+            {LEVELS.map((l) => (
+              <ChipButton
+                key={l}
+                active={level === l}
+                onClick={() => setLevel(l)}
+              >
+                {l[0].toUpperCase() + l.slice(1)}
+              </ChipButton>
+            ))}
+          </FilterGroup>
           <FilterGroup label="Номер задания ЕГЭ">
             <ChipButton
               active={examNumber === "all"}
@@ -106,7 +126,9 @@ export function TaskFilters({ tasks }: Props) {
           >
             <div className="flex flex-wrap items-center gap-2">
               <span className="badge">{TOPIC_LABELS[t.topic]}</span>
-              <span className="badge">№{t.examNumber}</span>
+              <span className="badge">
+                ЕГЭ {t.examLevel} №{t.examNumber}
+              </span>
               <DifficultyBadge difficulty={t.difficulty} />
               <span className="text-sm text-slate-400">— {t.subtopic}</span>
             </div>
