@@ -81,13 +81,13 @@ export function TrainerCard({ tasks, topicLabel }: Props) {
         <div style={{ width: `${progressPct}%` }} />
       </div>
 
-      <div className="surface p-6 sm:p-8">
-        <div className="mb-2 text-sm uppercase tracking-wide text-accent-soft">
+      <div className="surface p-4 sm:p-6 lg:p-8">
+        <div className="mb-2 text-xs uppercase tracking-wide text-accent-soft sm:text-sm">
           {task.subtopic}
         </div>
         <MathText text={task.statement} />
 
-        <div className="mt-6">
+        <div className="mt-5 sm:mt-6">
           {isChoice && task.answer.kind === "choice" ? (
             <div className="grid gap-2">
               {task.answer.options.map((opt, i) => {
@@ -123,25 +123,29 @@ export function TrainerCard({ tasks, topicLabel }: Props) {
           )}
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 grid grid-cols-1 gap-2 sm:flex sm:flex-wrap">
           {feedback === null ? (
             <button
               onClick={handleCheck}
               disabled={
                 isChoice ? choiceIndex === null : input.trim() === ""
               }
-              className="btn-primary"
+              className="btn-primary w-full sm:w-auto"
             >
               Проверить
             </button>
           ) : (
             <>
-              <button onClick={handleNext} disabled={completed} className="btn-primary">
+              <button
+                onClick={handleNext}
+                disabled={completed}
+                className="btn-primary w-full sm:w-auto"
+              >
                 Следующая задача
               </button>
               <button
                 onClick={() => setShowSolution((v) => !v)}
-                className="btn"
+                className="btn w-full sm:w-auto"
               >
                 {showSolution ? "Скрыть разбор" : "Показать разбор"}
               </button>

@@ -3,16 +3,15 @@ import { getTasksByTopic } from "@/lib/tasks";
 
 export default function TrainerIndexPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <header>
-        <h1 className="text-2xl font-bold text-white">Тренажёр</h1>
-        <p className="mt-2 text-slate-300">
+        <h1 className="text-xl font-bold text-white sm:text-2xl">Тренажёр</h1>
+        <p className="mt-2 text-sm text-slate-300 sm:text-base">
           Выберите тему. Карточки выдаются по очереди — задача → ответ →
-          разбор. Подсказки используются по желанию: чем меньше подсказок, тем
-          больше XP за задачу.
+          разбор. Подсказки по желанию: чем меньше подсказок, тем больше XP.
         </p>
       </header>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
         <TopicCard
           topic="probability"
           href="/trainer/probability"

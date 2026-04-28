@@ -21,22 +21,26 @@ export default function HandbookDetailPage({
     .filter((t): t is NonNullable<typeof t> => Boolean(t));
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <div>
+    <div className="space-y-5 sm:space-y-6">
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
           <Link href="/handbook" className="text-sm text-accent-soft hover:underline">
             ← К справочнику
           </Link>
-          <h1 className="mt-2 text-2xl font-bold text-white">{item.title}</h1>
-          <p className="mt-1 text-slate-300">{item.summary}</p>
+          <h1 className="mt-2 text-xl font-bold text-white sm:text-2xl">
+            {item.title}
+          </h1>
+          <p className="mt-1 text-sm text-slate-300 sm:text-base">
+            {item.summary}
+          </p>
         </div>
-        <span className="badge">~{item.readingMinutes} мин чтения</span>
+        <span className="badge shrink-0">~{item.readingMinutes} мин</span>
       </div>
 
       <div className="space-y-4">
         {item.sections.map((section) => (
-          <article key={section.id} className="surface p-6">
-            <h2 className="mb-3 text-lg font-semibold text-white">
+          <article key={section.id} className="surface p-4 sm:p-6">
+            <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
               {section.title}
             </h2>
             <MathText text={section.body} />

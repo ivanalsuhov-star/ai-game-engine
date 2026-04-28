@@ -12,20 +12,20 @@ export default function HomePage() {
   const geometryCount = getTasksByTopic("geometry").length;
 
   return (
-    <div className="space-y-10">
-      <section className="surface p-6 sm:p-10">
+    <div className="space-y-8 sm:space-y-10">
+      <section className="surface p-5 sm:p-8 lg:p-10">
         <div className="max-w-3xl">
           <span className="badge">ЕГЭ профильная математика</span>
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+          <h1 className="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl lg:text-4xl">
             Подготовка к экзамену в формате карточек
           </h1>
-          <p className="mt-3 text-base text-slate-300 sm:text-lg">
+          <p className="mt-3 text-sm text-slate-300 sm:text-base lg:text-lg">
             Справочник, тренажёр, агрегатор реальных задач из открытого банка
             ФИПИ и видеоразборы. Четыре блока: теория вероятностей (№4-5),
             статистика (№9), экономические задачи (№16) и геометрия (№1-3) —
             планиметрия, стереометрия и векторы.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
             <Link href="/trainer" className="btn-primary">
               Начать тренировку
             </Link>
@@ -50,8 +50,8 @@ export default function HomePage() {
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl font-bold text-white">Темы</h2>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="mb-4 text-lg font-bold text-white sm:text-xl">Темы</h2>
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2 xl:grid-cols-4">
           <TopicCard
             topic="probability"
             href="/trainer/probability"
@@ -79,8 +79,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="surface p-6 sm:p-8">
-        <h2 className="text-lg font-semibold text-white">Как устроена платформа</h2>
+      <section className="surface p-5 sm:p-8">
+        <h2 className="text-base font-semibold text-white sm:text-lg">Как устроена платформа</h2>
         <ul className="mt-3 grid gap-3 text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-4">
           <li>
             <strong className="text-white">Справочник.</strong> Краткая теория с

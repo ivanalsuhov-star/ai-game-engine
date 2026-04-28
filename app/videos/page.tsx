@@ -17,19 +17,19 @@ function formatDuration(sec: number): string {
 
 export default function VideosPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <header>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">
+        <h1 className="text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
           Видеоразборы
         </h1>
-        <p className="mt-2 max-w-2xl text-slate-300">
+        <p className="mt-2 max-w-2xl text-sm text-slate-300 sm:text-base">
           Короткие пошаговые видео по самым «дорогим» темам экзамена. Слушайте,
           смотрите слайд за слайдом и решайте параллельно — так лучше всего
           закрепляется материал.
         </p>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {videos.map((v) => (
           <Link
             key={v.id}

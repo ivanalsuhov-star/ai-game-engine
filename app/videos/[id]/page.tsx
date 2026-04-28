@@ -40,7 +40,7 @@ export default function VideoPage({ params }: { params: { id: string } }) {
     );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <Link href="/videos" className="text-sm text-accent-soft hover:underline">
         ← Ко всем видео
       </Link>
@@ -53,10 +53,12 @@ export default function VideoPage({ params }: { params: { id: string } }) {
             {formatTime(v.durationSec)}
           </span>
         </div>
-        <h1 className="text-3xl font-extrabold tracking-tight text-white">
+        <h1 className="text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl">
           {v.title}
         </h1>
-        <p className="max-w-2xl text-slate-300">{v.summary}</p>
+        <p className="max-w-2xl text-sm text-slate-300 sm:text-base">
+          {v.summary}
+        </p>
       </header>
 
       <div className="surface overflow-hidden p-0">
@@ -65,12 +67,15 @@ export default function VideoPage({ params }: { params: { id: string } }) {
           src={v.videoSrc}
           poster={v.poster}
           controls
+          playsInline
           preload="metadata"
         />
       </div>
 
-      <section className="surface p-6">
-        <h2 className="mb-3 text-lg font-semibold text-white">Главы</h2>
+      <section className="surface p-4 sm:p-6">
+        <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
+          Главы
+        </h2>
         <ol className="space-y-1 text-sm text-slate-200">
           {v.chapters.map((c, i) => (
             <li key={i} className="flex gap-3">
@@ -84,8 +89,8 @@ export default function VideoPage({ params }: { params: { id: string } }) {
       </section>
 
       {tasks.length > 0 && (
-        <section className="surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-white">
+        <section className="surface p-4 sm:p-6">
+          <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
             Связанные задачи
           </h2>
           <div className="space-y-2">
@@ -106,8 +111,8 @@ export default function VideoPage({ params }: { params: { id: string } }) {
       )}
 
       {topics.length > 0 && (
-        <section className="surface p-6">
-          <h2 className="mb-3 text-lg font-semibold text-white">
+        <section className="surface p-4 sm:p-6">
+          <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
             В справочнике
           </h2>
           <div className="space-y-2">

@@ -39,8 +39,8 @@ export function TaskFilters({ tasks }: Props) {
   );
 
   return (
-    <div className="space-y-5">
-      <div className="surface p-4">
+    <div className="space-y-4 sm:space-y-5">
+      <div className="surface p-3 sm:p-4">
         <div className="space-y-3">
           <FilterGroup label="Тема">
             <ChipButton
@@ -117,26 +117,28 @@ export function TaskFilters({ tasks }: Props) {
         Найдено задач: <span className="font-semibold text-slate-100">{filtered.length}</span>
       </div>
 
-      <div className="grid gap-3">
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
         {filtered.map((t) => (
           <Link
             key={t.id}
             href={`/tasks/${t.id}`}
-            className="surface block p-4 transition hover:border-accent/60"
+            className="surface block p-3 transition hover:border-accent/60 sm:p-4"
           >
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="badge">{TOPIC_LABELS[t.topic]}</span>
               <span className="badge">
                 ЕГЭ {t.examLevel} №{t.examNumber}
               </span>
               <DifficultyBadge difficulty={t.difficulty} />
-              <span className="text-sm text-slate-400">— {t.subtopic}</span>
+            </div>
+            <div className="mt-1.5 text-xs text-slate-400 sm:text-sm">
+              {t.subtopic}
             </div>
             <MathText
               className="mt-2 line-clamp-3 text-sm text-slate-200"
               text={t.statement.replace(/\\\\?\n/g, " ")}
             />
-            <div className="mt-2 text-xs text-slate-500">
+            <div className="mt-2 text-[11px] text-slate-500 sm:text-xs">
               Источник: {t.source}
             </div>
           </Link>

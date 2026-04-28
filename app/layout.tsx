@@ -8,6 +8,12 @@ export const metadata: Metadata = {
     "Кросс-платформенная веб-платформа для подготовки к профильной математике ЕГЭ: справочник, тренажёр карточек, агрегатор реальных задач ФИПИ по экономике, статистике и теории вероятностей.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -16,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className="min-h-screen bg-bg">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-4 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-3 py-4 sm:px-6 sm:py-6 lg:px-8">
           <Header />
-          <main className="flex-1 py-8">{children}</main>
+          <main className="flex-1 py-5 sm:py-8">{children}</main>
           <Footer />
         </div>
       </body>
@@ -28,10 +34,10 @@ export default function RootLayout({
 
 function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-border-soft pb-6">
+    <header className="flex flex-col gap-3 border-b border-border-soft pb-4 sm:flex-row sm:items-center sm:justify-between sm:pb-6">
       <Link
         href="/"
-        className="flex items-center gap-3 text-lg font-bold text-white"
+        className="flex items-center gap-2.5 text-base font-bold text-white sm:gap-3 sm:text-lg"
       >
         <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-accent to-accent-glow text-base font-extrabold text-white shadow-glow">
           Π
@@ -40,18 +46,18 @@ function Header() {
           Профмат<span className="text-accent-soft">тренажёр</span>
         </span>
       </Link>
-      <nav className="flex items-center gap-1 sm:gap-3 text-sm">
-        <Link className="chip" href="/handbook">
+      <nav className="-mx-1 flex items-center gap-1.5 overflow-x-auto px-1 text-sm sm:mx-0 sm:flex-wrap sm:gap-2 sm:overflow-visible sm:px-0">
+        <Link className="chip whitespace-nowrap" href="/handbook">
           Справочник
         </Link>
-        <Link className="chip" href="/trainer">
+        <Link className="chip whitespace-nowrap" href="/trainer">
           Тренажёр
         </Link>
-        <Link className="chip" href="/tasks">
+        <Link className="chip whitespace-nowrap" href="/tasks">
           Задачи
         </Link>
-        <Link className="chip" href="/videos">
-          Видеоразборы
+        <Link className="chip whitespace-nowrap" href="/videos">
+          Видео
         </Link>
       </nav>
     </header>
@@ -60,10 +66,9 @@ function Header() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border-soft pt-6 text-center text-xs text-slate-500">
+    <footer className="border-t border-border-soft pt-4 text-center text-[11px] text-slate-500 sm:pt-6 sm:text-xs">
       <p>
-        Профматтренажёр • Подготовка к профильной математике ЕГЭ • Учитываем
-        стандарты ФИПИ
+        Профматтренажёр • Подготовка к ЕГЭ профильная математика • ФИПИ-формат
       </p>
       <p className="mt-1">
         Прогресс сохраняется только в вашем браузере (localStorage).

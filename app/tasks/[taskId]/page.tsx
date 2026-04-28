@@ -23,42 +23,47 @@ export default function TaskDetailPage({
     .filter((h): h is NonNullable<typeof h> => Boolean(h));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <div>
         <Link href="/tasks" className="text-sm text-accent-soft hover:underline">
           ← Ко всем задачам
         </Link>
-        <div className="mt-2 flex flex-wrap items-center gap-2">
+        <div className="mt-2 flex flex-wrap items-center gap-1.5 sm:gap-2">
           <span className="badge">{TOPIC_LABELS[task.topic]}</span>
           <span className="badge">
             ЕГЭ {task.examLevel} №{task.examNumber}
           </span>
           <DifficultyBadge difficulty={task.difficulty} />
-          <span className="text-sm text-slate-400">{task.subtopic}</span>
+        </div>
+        <div className="mt-1.5 text-xs text-slate-400 sm:text-sm">
+          {task.subtopic}
         </div>
       </div>
 
-      <article className="surface p-6">
-        <h1 className="mb-3 text-lg font-semibold text-white">Условие</h1>
+      <article className="surface p-4 sm:p-6">
+        <h1 className="mb-3 text-base font-semibold text-white sm:text-lg">
+          Условие
+        </h1>
         <MathText text={task.statement} />
         <p className="mt-4 text-xs text-slate-500">Источник: {task.source}</p>
       </article>
 
-      <article className="surface p-6">
-        <h2 className="mb-3 text-lg font-semibold text-white">Ответ</h2>
-        <p className="text-2xl font-bold text-accent-soft">
+      <article className="surface p-4 sm:p-6">
+        <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
+          Ответ
+        </h2>
+        <p className="text-xl font-bold text-accent-soft sm:text-2xl">
           {formatAnswer(task.answer)}
         </p>
       </article>
 
-      <article className="surface p-6">
-        <h2 className="mb-3 text-lg font-semibold text-white">Подсказки</h2>
+      <article className="surface p-4 sm:p-6">
+        <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
+          Подсказки
+        </h2>
         <div className="space-y-3">
           {task.hints.map((h) => (
-            <details
-              key={h.level}
-              className="surface-elevated p-4"
-            >
+            <details key={h.level} className="surface-elevated p-4">
               <summary className="cursor-pointer text-sm font-semibold text-slate-100">
                 Подсказка {h.level}: {h.title}
               </summary>
@@ -70,8 +75,10 @@ export default function TaskDetailPage({
         </div>
       </article>
 
-      <article className="surface p-6">
-        <h2 className="mb-3 text-lg font-semibold text-white">Подробный разбор</h2>
+      <article className="surface p-4 sm:p-6">
+        <h2 className="mb-3 text-base font-semibold text-white sm:text-lg">
+          Подробный разбор
+        </h2>
         <ol className="list-decimal space-y-3 pl-5 text-slate-200">
           {task.solution.map((step, i) => (
             <li key={i}>

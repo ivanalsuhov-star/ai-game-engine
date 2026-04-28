@@ -13,13 +13,13 @@ export function TopicCard({ topic, href, meta, emoji }: Props) {
   return (
     <Link
       href={href}
-      className="group surface block p-6 transition hover:border-accent/60 hover:shadow-glow"
+      className="group surface block p-4 transition hover:border-accent/60 hover:shadow-glow sm:p-6"
     >
-      <div className="mb-3 flex items-center justify-between">
+      <div className="mb-2 flex items-center justify-between sm:mb-3">
         <span className="text-2xl">{emoji ?? "📘"}</span>
         {meta && <span className="badge">{meta}</span>}
       </div>
-      <h3 className="text-lg font-semibold text-white group-hover:text-accent-soft">
+      <h3 className="text-base font-semibold text-white group-hover:text-accent-soft sm:text-lg">
         {TOPIC_LABELS[topic]}
       </h3>
       <p className="mt-2 text-sm text-slate-400">{TOPIC_DESCRIPTIONS[topic]}</p>

@@ -22,9 +22,9 @@ export default function TrainerTopicPage({
   const tasks = getTasksByTopic(topic);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-white">
+    <div className="space-y-5 sm:space-y-6">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h1 className="text-lg font-bold text-white sm:text-2xl">
           Тренажёр: {TOPIC_LABELS[topic]}
         </h1>
         <Link href="/trainer" className="btn">
