@@ -9,6 +9,7 @@ export default function HomePage() {
   const probabilityCount = getTasksByTopic("probability").length;
   const statisticsCount = getTasksByTopic("statistics").length;
   const economicsCount = getTasksByTopic("economics").length;
+  const geometryCount = getTasksByTopic("geometry").length;
 
   return (
     <div className="space-y-10">
@@ -20,9 +21,9 @@ export default function HomePage() {
           </h1>
           <p className="mt-3 text-base text-slate-300 sm:text-lg">
             Справочник, тренажёр, агрегатор реальных задач из открытого банка
-            ФИПИ и видеоразборы самых сложных тем. Сосредоточены на самом
-            &laquo;дорогом&raquo; материале: экономических задачах (№16),
-            теории вероятностей (№№4-5) и базовой статистике.
+            ФИПИ и видеоразборы. Четыре блока: теория вероятностей (№4-5),
+            статистика (№9), экономические задачи (№16) и геометрия (№1-3) —
+            планиметрия, стереометрия и векторы.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/trainer" className="btn-primary">
@@ -68,6 +69,12 @@ export default function HomePage() {
             href="/trainer/economics"
             meta={`${economicsCount} задач`}
             emoji="💰"
+          />
+          <TopicCard
+            topic="geometry"
+            href="/trainer/geometry"
+            meta={`${geometryCount} задач`}
+            emoji="📐"
           />
         </div>
       </section>

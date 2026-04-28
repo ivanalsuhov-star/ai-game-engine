@@ -2,11 +2,13 @@ import type { Task, Topic } from "../types";
 import { probabilityTasks } from "./probability";
 import { statisticsTasks } from "./statistics";
 import { economicsTasks } from "./economics";
+import { geometryTasks } from "./geometry";
 
 export const allTasks: Task[] = [
   ...probabilityTasks,
   ...statisticsTasks,
   ...economicsTasks,
+  ...geometryTasks,
 ];
 
 export function getTasksByTopic(topic: Topic): Task[] {
@@ -21,6 +23,7 @@ export const TOPIC_LABELS: Record<Topic, string> = {
   probability: "Теория вероятностей",
   statistics: "Статистика",
   economics: "Экономические задачи",
+  geometry: "Геометрия",
 };
 
 export const TOPIC_DESCRIPTIONS: Record<Topic, string> = {
@@ -30,6 +33,8 @@ export const TOPIC_DESCRIPTIONS: Record<Topic, string> = {
     "Среднее арифметическое, медиана, размах, частоты, чтение графиков и диаграмм.",
   economics:
     "Вклады, кредиты с дифференцированными и аннуитетными платежами, оптимизация прибыли.",
+  geometry:
+    "Планиметрия, стереометрия и векторы: треугольники, окружности, призмы, пирамиды, шар и конус.",
 };
 
 export const DIFFICULTY_LABELS = {

@@ -31,6 +31,12 @@ export default function TrainerIndexPage() {
           meta={`${getTasksByTopic("economics").length} задач`}
           emoji="💰"
         />
+        <TopicCard
+          topic="geometry"
+          href="/trainer/geometry"
+          meta={`${getTasksByTopic("geometry").length} задач`}
+          emoji="📐"
+        />
       </div>
     </div>
   );

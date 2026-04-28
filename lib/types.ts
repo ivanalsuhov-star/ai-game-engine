@@ -1,4 +1,4 @@
-export type Topic = "probability" | "statistics" | "economics";
+export type Topic = "probability" | "statistics" | "economics" | "geometry";
 
 export type Difficulty = "easy" | "medium" | "hard";
 

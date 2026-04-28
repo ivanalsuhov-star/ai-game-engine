@@ -214,10 +214,105 @@ describe("Целостность данных", () => {
     }
   });
 
-  it("в библиотеке есть задачи каждого типа (probability, statistics, economics)", () => {
+  it("в библиотеке есть задачи каждого типа (probability, statistics, economics, geometry)", () => {
     const topics = new Set(allTasks.map((t) => t.topic));
     expect(topics.has("probability")).toBe(true);
     expect(topics.has("statistics")).toBe(true);
     expect(topics.has("economics")).toBe(true);
+    expect(topics.has("geometry")).toBe(true);
+  });
+
+  it("каждый блок содержит не меньше 25 задач", () => {
+    const byTopic = allTasks.reduce<Record<string, number>>((acc, t) => {
+      acc[t.topic] = (acc[t.topic] ?? 0) + 1;
+      return acc;
+    }, {});
+    expect(byTopic.probability).toBeGreaterThanOrEqual(25);
+    expect(byTopic.statistics).toBeGreaterThanOrEqual(25);
+    expect(byTopic.economics).toBeGreaterThanOrEqual(25);
+    expect(byTopic.geometry).toBeGreaterThanOrEqual(25);
+  });
+});
+
+describe("Независимая проверка новых задач", () => {
+  it("Бернулли: хотя бы одно попадание 3×0.7 → 1 - 0.3^3", () => {
+    const t = getTaskById("prob-complement-shooter");
+    expectNumeric(t!.answer, 1 - Math.pow(0.3, 3), 1e-6);
+  });
+
+  it("3 завода, брак 1/2/5% → 0.021", () => {
+    const t = getTaskById("prob-total-three-factories");
+    const expected = 0.5 * 0.01 + 0.3 * 0.02 + 0.2 * 0.05;
+    expectNumeric(t!.answer, expected, 1e-6);
+  });
+
+  it("условная: 5 белых из 10, без возвращения, оба белых = 20/90", () => {
+    const t = getTaskById("prob-conditional-jar");
+    expectNumeric(t!.answer, (5 / 10) * (4 / 9), 1e-6);
+  });
+
+  it("ромб: диагонали 6 и 8 → сторона 5", () => {
+    const t = getTaskById("geom-rhombus-side");
+    expectNumeric(t!.answer, Math.sqrt(3 ** 2 + 4 ** 2), 1e-6);
+  });
+
+  it("Герон: 13,14,15 → 84", () => {
+    const t = getTaskById("geom-triangle-heron");
+    const p = (13 + 14 + 15) / 2;
+    const S = Math.sqrt(p * (p - 13) * (p - 14) * (p - 15));
+    expectNumeric(t!.answer, S, 1e-3);
+  });
+
+  it("пирамида: 15×6/3 → 30", () => {
+    const t = getTaskById("geom-pyramid-volume");
+    expectNumeric(t!.answer, (15 * 6) / 3, 1e-6);
+  });
+
+  it("скалярное произведение (1,2)·(3,4) = 11", () => {
+    const t = getTaskById("geom-vec-dot");
+    expectNumeric(t!.answer, 1 * 3 + 2 * 4, 1e-6);
+  });
+
+  it("выручка R(p)=p(100-2p) max = 1250", () => {
+    const t = getTaskById("econ-quad-max-price");
+    const R = (p: number) => p * (100 - 2 * p);
+    expectNumeric(t!.answer, R(25), 1e-6);
+  });
+
+  it("2×5% выросла → 1.1² = 1.21 → S=1452/1.21 = 1200", () => {
+    const t = getTaskById("econ-markup-loss");
+    expectNumeric(t!.answer, 1452 / 1.21, 1e-3);
+  });
+
+  it("аннуитет 500000 n=3 q=1.05 → ~183602", () => {
+    const t = getTaskById("econ-annuity-6m");
+    const S = 500000;
+    const q = 1.05;
+    const qn = Math.pow(q, 3);
+    expectNumeric(t!.answer, (S * qn * (q - 1)) / (qn - 1), 3);
+  });
+
+  it("дисперсия [2,4,4,4,5,5,7,9] = 4", () => {
+    const t = getTaskById("stat-variance-simple");
+    const data = [2, 4, 4, 4, 5, 5, 7, 9];
+    const mean = data.reduce((a, b) => a + b, 0) / data.length;
+    const expected = data.reduce((s, x) => s + (x - mean) ** 2, 0) / data.length;
+    expectNumeric(t!.answer, expected, 1e-6);
+  });
+
+  it("взвешенное среднее: (5·3+4·2+3·1)/6", () => {
+    const t = getTaskById("stat-weighted-mean");
+    expectNumeric(t!.answer, (5 * 3 + 4 * 2 + 3 * 1) / 6, 1e-6);
+  });
+
+  it("удвоение вклада при 20%: минимальное n с 1.2^n >= 2 равно 4", () => {
+    const t = getTaskById("econ-double-years");
+    expectNumeric(t!.answer, 4, 0.5);
+  });
+
+  it("3 взноса под 10%: 100000*(1.1²+1.1+1)=331000", () => {
+    const t = getTaskById("econ-fund-grow");
+    const expected = 100000 * (1.1 ** 2 + 1.1 + 1);
+    expectNumeric(t!.answer, expected, 1);
   });
 });
