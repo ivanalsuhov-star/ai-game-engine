@@ -4,13 +4,20 @@ import { StatsBar } from "@/components/StatsBar";
 import { allTasks, getTasksByTopic } from "@/lib/tasks";
 import { videos } from "@/lib/videos";
 import { handbook } from "@/lib/handbook";
+import type { Topic } from "@/lib/types";
+
+const TOPIC_CARDS: { topic: Topic; emoji: string }[] = [
+  { topic: "algebra", emoji: "∑" },
+  { topic: "functions", emoji: "📈" },
+  { topic: "geometry", emoji: "📐" },
+  { topic: "probability", emoji: "🎲" },
+  { topic: "statistics", emoji: "📊" },
+  { topic: "economics", emoji: "💰" },
+  { topic: "text-problems", emoji: "✍️" },
+  { topic: "numbers", emoji: "🔢" },
+];
 
 export default function HomePage() {
-  const probabilityCount = getTasksByTopic("probability").length;
-  const statisticsCount = getTasksByTopic("statistics").length;
-  const economicsCount = getTasksByTopic("economics").length;
-  const geometryCount = getTasksByTopic("geometry").length;
-
   return (
     <div className="space-y-8 sm:space-y-10">
       <section className="surface p-5 sm:p-8 lg:p-10">
@@ -21,13 +28,16 @@ export default function HomePage() {
           </h1>
           <p className="mt-3 text-sm text-slate-300 sm:text-base lg:text-lg">
             Справочник, тренажёр, агрегатор реальных задач из открытого банка
-            ФИПИ и видеоразборы. Четыре блока: теория вероятностей (№4-5),
-            статистика (№9), экономические задачи (№16) и геометрия (№1-3) —
-            планиметрия, стереометрия и векторы.
+            ФИПИ и видеоразборы. Покрываем все номера ЕГЭ профильной
+            математики: алгебра, функции и производная, геометрия, текстовые
+            задачи, статистика, вероятности, экономика и теория чисел.
           </p>
           <div className="mt-5 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
             <Link href="/trainer" className="btn-primary">
               Начать тренировку
+            </Link>
+            <Link href="/exam" className="btn">
+              Полный вариант ЕГЭ
             </Link>
             <Link href="/handbook" className="btn">
               Справочник ({handbook.length})
@@ -52,30 +62,15 @@ export default function HomePage() {
       <section>
         <h2 className="mb-4 text-lg font-bold text-white sm:text-xl">Темы</h2>
         <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2 xl:grid-cols-4">
-          <TopicCard
-            topic="probability"
-            href="/trainer/probability"
-            meta={`${probabilityCount} задач`}
-            emoji="🎲"
-          />
-          <TopicCard
-            topic="statistics"
-            href="/trainer/statistics"
-            meta={`${statisticsCount} задач`}
-            emoji="📊"
-          />
-          <TopicCard
-            topic="economics"
-            href="/trainer/economics"
-            meta={`${economicsCount} задач`}
-            emoji="💰"
-          />
-          <TopicCard
-            topic="geometry"
-            href="/trainer/geometry"
-            meta={`${geometryCount} задач`}
-            emoji="📐"
-          />
+          {TOPIC_CARDS.map(({ topic, emoji }) => (
+            <TopicCard
+              key={topic}
+              topic={topic}
+              href={`/trainer/${topic}`}
+              meta={`${getTasksByTopic(topic).length} задач`}
+              emoji={emoji}
+            />
+          ))}
         </div>
       </section>
 
@@ -91,13 +86,14 @@ export default function HomePage() {
             Duolingo с трёхуровневыми подсказками и пошаговыми разборами.
           </li>
           <li>
-            <strong className="text-white">Агрегатор.</strong> Все задачи с
-            фильтрами по теме, номеру и сложности — для целевой подготовки.
+            <strong className="text-white">Агрегатор и варианты.</strong> Фильтры по
+            теме, номеру и сложности; сборка полного варианта ЕГЭ из 19 задач с
+            таймером и оценкой.
           </li>
           <li>
-            <strong className="text-white">Видеоразборы.</strong> Озвученные
-            пошаговые ролики по самым сложным темам — для комплексного
-            запоминания.
+            <strong className="text-white">Видеоразборы и PWA.</strong> Озвученные
+            ролики по сложным темам и установка приложения на телефон/ПК для
+            работы офлайн.
           </li>
         </ul>
       </section>

@@ -4,10 +4,14 @@ import { TOPIC_LABELS } from "@/lib/tasks";
 import type { Topic } from "@/lib/types";
 
 const TOPIC_ORDER: Topic[] = [
+  "algebra",
+  "functions",
+  "geometry",
   "probability",
   "statistics",
   "economics",
-  "geometry",
+  "text-problems",
+  "numbers",
 ];
 
 export default function HandbookIndexPage() {
@@ -16,9 +20,11 @@ export default function HandbookIndexPage() {
       <header>
         <h1 className="text-xl font-bold text-white sm:text-2xl">Справочник</h1>
         <p className="mt-2 text-sm text-slate-300 sm:text-base">
-          Краткая теория по разделам: №4-5 (вероятности), №9 (статистика), №16
-          (экономика) и №1-3 (планиметрия, векторы, стереометрия). Все формулы в
-          KaTeX, каждый раздел связан с задачами тренажёра.
+          Краткая теория по всем разделам ЕГЭ профильной математики: №1-3
+          (геометрия), №4-5 (вероятности), №6-7, №13, №15 (алгебра), №7, №11-12
+          (производная), №8 (текстовые), №9 (статистика), №16 (экономика), №19
+          (числа). Все формулы в KaTeX, каждый раздел связан с задачами
+          тренажёра.
         </p>
       </header>
       {TOPIC_ORDER.map((topic) => {

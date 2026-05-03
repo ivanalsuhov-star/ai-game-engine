@@ -315,4 +315,92 @@ describe("Независимая проверка новых задач", () => 
     const expected = 100000 * (1.1 ** 2 + 1.1 + 1);
     expectNumeric(t!.answer, expected, 1);
   });
+
+  it("показательное 3^(x-2)=27 ⇒ x=5", () => {
+    const t = getTaskById("alg-exp-power-of-3");
+    expectNumeric(t!.answer, 5);
+  });
+
+  it("логарифмическое log_2(x-3)=4 ⇒ x=19", () => {
+    const t = getTaskById("alg-log-simple");
+    expectNumeric(t!.answer, 19);
+  });
+
+  it("замена в показательном 4·2^x: больший корень x=2", () => {
+    const t = getTaskById("alg-exp-substitution");
+    expectNumeric(t!.answer, 2);
+  });
+
+  it("sin α=0.6, II четверть ⇒ cos α = -0.8", () => {
+    const t = getTaskById("alg-trig-cos-from-sin");
+    const cos2 = 1 - 0.6 ** 2;
+    expectNumeric(t!.answer, -Math.sqrt(cos2));
+  });
+
+  it("sin 2α при sin=3/5, cos=4/5 = 24/25", () => {
+    const t = getTaskById("alg-trig-double-angle");
+    expectNumeric(t!.answer, (2 * 3 * 4) / 25);
+  });
+
+  it("касательная параллельна y=4x-7, y=x²+1: x₀=2", () => {
+    const t = getTaskById("func-tangent-slope");
+    expectNumeric(t!.answer, 4 / 2);
+  });
+
+  it("точка максимума y=x³-12x+1 — это x=-2", () => {
+    const t = getTaskById("func-monotony");
+    expectNumeric(t!.answer, -2);
+  });
+
+  it("min y=x³-3x²+4 на [0;3] = 0 (в x=2)", () => {
+    const t = getTaskById("func-extrema-cubic");
+    const f = (x: number) => x ** 3 - 3 * x ** 2 + 4;
+    expectNumeric(t!.answer, Math.min(f(0), f(2), f(3)));
+  });
+
+  it("max y=2x³-9x²+12x+5 на [0;4] = 37", () => {
+    const t = getTaskById("func-extrema-segment");
+    const f = (x: number) => 2 * x ** 3 - 9 * x ** 2 + 12 * x + 5;
+    expectNumeric(t!.answer, Math.max(f(0), f(1), f(2), f(4)));
+  });
+
+  it("две скидки 10% → 0.81 → начальная цена 6000", () => {
+    const t = getTaskById("text-percent-discount");
+    expectNumeric(t!.answer, 4860 / (0.9 * 0.9));
+  });
+
+  it("лодка 40+40 за 9ч, теч=1: v=9 км/ч", () => {
+    const t = getTaskById("text-movement-river");
+    // 40/(v+1) + 40/(v-1) = 9 ⇒ 9v² - 80v - 9 = 0
+    const v = (80 + Math.sqrt(80 ** 2 + 4 * 9 * 9)) / (2 * 9);
+    expectNumeric(t!.answer, v);
+  });
+
+  it("8 кг сплава 30%+70% = 50%: первого 4 кг", () => {
+    const t = getTaskById("text-alloy-mix");
+    expectNumeric(t!.answer, (0.5 * 8 - 0.7 * 8) / (0.3 - 0.7));
+  });
+
+  it("число делителей 360 = 24", () => {
+    const t = getTaskById("num-divisors-count");
+    expectNumeric(t!.answer, 4 * 3 * 2);
+  });
+
+  it("3-значных кратных 7: 128", () => {
+    const t = getTaskById("num-three-digit");
+    expectNumeric(t!.answer, 142 - 15 + 1);
+  });
+
+  it("gcd(252, 105) = 21", () => {
+    const t = getTaskById("num-gcd-pair");
+    function gcd(a: number, b: number): number {
+      return b === 0 ? a : gcd(b, a % b);
+    }
+    expectNumeric(t!.answer, gcd(252, 105));
+  });
+
+  it("остаток 2024² mod 7 = 1", () => {
+    const t = getTaskById("num-remainder-7");
+    expectNumeric(t!.answer, (2024 * 2024) % 7);
+  });
 });

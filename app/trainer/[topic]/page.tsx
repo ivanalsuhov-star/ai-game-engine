@@ -4,7 +4,16 @@ import { TrainerCard } from "@/components/TrainerCard";
 import { TOPIC_LABELS, getTasksByTopic } from "@/lib/tasks";
 import type { Topic } from "@/lib/types";
 
-const VALID_TOPICS: Topic[] = ["probability", "statistics", "economics", "geometry"];
+const VALID_TOPICS: Topic[] = [
+  "probability",
+  "statistics",
+  "economics",
+  "geometry",
+  "algebra",
+  "functions",
+  "text-problems",
+  "numbers",
+];
 
 export function generateStaticParams() {
   return VALID_TOPICS.map((topic) => ({ topic }));

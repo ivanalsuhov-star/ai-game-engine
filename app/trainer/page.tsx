@@ -12,30 +12,14 @@ export default function TrainerIndexPage() {
         </p>
       </header>
       <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
-        <TopicCard
-          topic="probability"
-          href="/trainer/probability"
-          meta={`${getTasksByTopic("probability").length} задач`}
-          emoji="🎲"
-        />
-        <TopicCard
-          topic="statistics"
-          href="/trainer/statistics"
-          meta={`${getTasksByTopic("statistics").length} задач`}
-          emoji="📊"
-        />
-        <TopicCard
-          topic="economics"
-          href="/trainer/economics"
-          meta={`${getTasksByTopic("economics").length} задач`}
-          emoji="💰"
-        />
-        <TopicCard
-          topic="geometry"
-          href="/trainer/geometry"
-          meta={`${getTasksByTopic("geometry").length} задач`}
-          emoji="📐"
-        />
+        <TopicCard topic="algebra" href="/trainer/algebra" meta={`${getTasksByTopic("algebra").length} задач`} emoji="∑" />
+        <TopicCard topic="functions" href="/trainer/functions" meta={`${getTasksByTopic("functions").length} задач`} emoji="📈" />
+        <TopicCard topic="geometry" href="/trainer/geometry" meta={`${getTasksByTopic("geometry").length} задач`} emoji="📐" />
+        <TopicCard topic="probability" href="/trainer/probability" meta={`${getTasksByTopic("probability").length} задач`} emoji="🎲" />
+        <TopicCard topic="statistics" href="/trainer/statistics" meta={`${getTasksByTopic("statistics").length} задач`} emoji="📊" />
+        <TopicCard topic="economics" href="/trainer/economics" meta={`${getTasksByTopic("economics").length} задач`} emoji="💰" />
+        <TopicCard topic="text-problems" href="/trainer/text-problems" meta={`${getTasksByTopic("text-problems").length} задач`} emoji="✍️" />
+        <TopicCard topic="numbers" href="/trainer/numbers" meta={`${getTasksByTopic("numbers").length} задач`} emoji="🔢" />
       </div>
     </div>
   );

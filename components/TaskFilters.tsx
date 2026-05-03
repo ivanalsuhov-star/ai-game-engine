@@ -12,7 +12,16 @@ interface Props {
 }
 
 const DIFFICULTIES: Difficulty[] = ["easy", "medium", "hard"];
-const TOPICS: Topic[] = ["probability", "statistics", "economics", "geometry"];
+const TOPICS: Topic[] = [
+  "algebra",
+  "functions",
+  "geometry",
+  "probability",
+  "statistics",
+  "economics",
+  "text-problems",
+  "numbers",
+];
 const LEVELS: ExamLevel[] = ["профиль", "база"];
 
 export function TaskFilters({ tasks }: Props) {

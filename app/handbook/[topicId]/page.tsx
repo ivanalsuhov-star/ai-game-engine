@@ -68,9 +68,10 @@ export default function HandbookDetailPage({
                     {t.subtopic}
                   </span>
                 </div>
-                <p className="mt-2 line-clamp-2 text-sm text-slate-400">
-                  {t.statement.replace(/\\\\?\n/g, " ").slice(0, 140)}…
-                </p>
+                <MathText
+                  className="mt-2 line-clamp-2 text-sm text-slate-400"
+                  text={t.statement.replace(/\\\\?\n/g, " ")}
+                />
               </Link>
             ))}
           </div>
